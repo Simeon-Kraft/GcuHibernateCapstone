@@ -13,6 +13,7 @@
 	<h1>Students</h1>
 	<div>
 		<p><a href="courses"><button type="submit">courses</button></a></p>
+		<p><a href="add-student"><button type="submit">add student</button></a></p>
 		<div>
 			<table>
 				<thead>
