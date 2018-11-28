@@ -20,8 +20,8 @@ public class Student extends User {
 	@OneToMany
 	private List<Enrollments> enrollments;
 	
-	public Student(Long id, Long phone, String adress) {
-		super();
+	public Student(String username, String password, String firstName, String lastName, boolean isAdmin, Long phone, String adress) {
+		super(username, password, firstName, lastName, isAdmin);
 		this.phone = phone;
 		this.adress = adress;
 	}
