@@ -8,6 +8,12 @@ import javax.persistence.MappedSuperclass;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class User {
 	
+	private Long id;
+	private String username;
+	private String password;
+	private String firstName;
+	private String lastName;
 	private boolean isAdmin;
+	
 
 }
