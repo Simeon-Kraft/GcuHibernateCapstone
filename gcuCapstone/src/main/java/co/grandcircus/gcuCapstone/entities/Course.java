@@ -22,6 +22,11 @@ public class Course {
 	private List<Enrollments> enrollments;
 	
 	public Course() {}
+	
+	public Course(String name, String category) {
+		this.name = name;
+		this.category = category;
+	}
 
 	public Long getId() {
 		return id;

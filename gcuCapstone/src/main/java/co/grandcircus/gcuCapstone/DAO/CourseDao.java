@@ -17,6 +17,10 @@ public class CourseDao {
 	@PersistenceContext
 	private EntityManager em;
 	
+	public List<Course> findAll(){
+		return em.createQuery("FROM Course", Course.class).getResultList();
+	}
+	
 	public void createCourse(Course course) {
 		em.persist(course);
 	}

@@ -4,17 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>index</title>
+<title>add-course</title>
 </head>
 <body>
-	<h1>Hello</h1>
+	<h1>add new course</h1>
 		<div>
-			<p>Make a student</p>
 				<div>
-					<form action="/" method="post">
-						<p>course Name:</p>
+					<form action="/courses" method="post">
+						<p>Course Name:</p>
 						<input name="name">
-						<p>category:</p>
+						<p>Category:</p>
 						<input name="category">
 						
 					
