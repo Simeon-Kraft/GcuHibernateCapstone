@@ -1,10 +1,11 @@
 package co.grandcircus.gcuCapstone.entities;
 
+import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 
-@MappedSuperclass
+@Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class User {
 	
@@ -15,5 +16,13 @@ public abstract class User {
 	private String lastName;
 	private boolean isAdmin;
 	
-
+	public User() {}
+	
+	public User(String username, String password, String firstName, String lastName, boolean isAdmin) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.isAdmin = isAdmin;
+	}
 }

@@ -12,8 +12,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "students")
 public class Student extends User {
-	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "student_id")
 	private Long id;
 	private Long phone;
@@ -21,6 +21,12 @@ public class Student extends User {
 	@OneToMany
 	private List<Enrollments> enrollments;
 	
+	public Student(Long id, Long phone, String adress) {
+		super();
+		this.id = id;
+		this.phone = phone;
+		this.adress = adress;
+	}
 	
 	@Override
 	public String toString() {
@@ -45,12 +51,7 @@ public class Student extends User {
 	public void setAdress(String adress) {
 		this.adress = adress;
 	}
-	public Student(Long id, Long phone, String adress) {
-		super();
-		this.id = id;
-		this.phone = phone;
-		this.adress = adress;
-	}
+
 	public Student() {
 		super();
 	}
