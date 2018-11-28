@@ -25,9 +25,11 @@
 				</thead>
 				<c:forEach var="student" items="${ list }">
 					<tr>
+
 						<td>${ student.firstName }</td>
 						<td>${ student.lastName }</td>
-						<td>${ student.phone }</td>
+						<td>${ student.phone } </td>
+						<td><a href= "delete/${student.id }">delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>
