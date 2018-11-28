@@ -15,7 +15,6 @@ import javax.persistence.Table;
 public class Course {
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name= "course_id")
 	private Long id;
 	private String name;
 	private String category;
