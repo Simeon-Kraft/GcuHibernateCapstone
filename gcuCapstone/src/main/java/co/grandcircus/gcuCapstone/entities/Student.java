@@ -7,15 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 @Entity
-@Table(name = "students")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Student extends User {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name= "student_id")
-	private Long id;
 	private Long phone;
 	private String adress;
 	@OneToMany
@@ -23,20 +22,8 @@ public class Student extends User {
 	
 	public Student(Long id, Long phone, String adress) {
 		super();
-		this.id = id;
 		this.phone = phone;
 		this.adress = adress;
-	}
-	
-	@Override
-	public String toString() {
-		return "Student [id=" + id + "phone=" + phone + ", adress=" + adress + "]";
-	}
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
 	}
 	
 	public Long getPhone() {

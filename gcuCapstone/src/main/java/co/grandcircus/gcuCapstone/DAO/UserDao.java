@@ -1,5 +1,5 @@
 package co.grandcircus.gcuCapstone.DAO;
 
-public class CourseDao {
+public class UserDao {
 
 }
