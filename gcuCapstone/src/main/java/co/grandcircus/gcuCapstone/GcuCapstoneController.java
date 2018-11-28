@@ -50,11 +50,25 @@ public class GcuCapstoneController {
 		return new ModelAndView("add-course");
 	}
 	
+	@RequestMapping("/add-student")
+	public ModelAndView addStudent() {
+		return new ModelAndView("add-student");
+	}
+	
+	@PostMapping("/student-list")
+	public ModelAndView newLists(Student student) {
+		userDao.createStudent(student);
+		return new ModelAndView("redirect:/student-list");
+	}
+	
 	@PostMapping("/courses")
 		public ModelAndView viewNewCourses(Course course) {
 			courseDao.createCourse(course);
 			return new ModelAndView("redirect:/courses");
 		}
+	
+	
+	
 	@RequestMapping("/student-list")
 	public ModelAndView studentList() {
 		List<User> list = userDao.findAllStudents();
