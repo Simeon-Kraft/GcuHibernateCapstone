@@ -20,7 +20,7 @@ public class Course {
 	private String name;
 	private String category;
 	@OneToMany
-	private List<Enrollments> list;
+	private List<Enrollments> enrollments;
 	
 	public Course() {}
 
@@ -49,11 +49,11 @@ public class Course {
 	}
 
 	public List<Enrollments> getList() {
-		return list;
+		return enrollments;
 	}
 
-	public void setList(List<Enrollments> list) {
-		this.list = list;
+	public void setList(List<Enrollments> enrollments) {
+		this.enrollments = enrollments;
 	}
 	
 	

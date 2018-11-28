@@ -7,16 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 @Entity
-
+@Table(name = "students")
 public class Student extends User {
 	@Id 
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name= "student_id")
 	private Long id;
+	private boolean isAdmin = false;
 	private String LastName;
 	private Long phone;
 	private String adress;
+	@OneToMany
 	private List<Enrollments> enrollments;
 	
 	
