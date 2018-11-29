@@ -12,19 +12,19 @@
 				<div>
 					<form action="/student-list" method="post">
 						<p>First Name:</p>
-						<input name="firstName">
+						<input required name="firstName">
 						
 						<p>Last Name:</p>
-						<input name="lastName">
+						<input required name="lastName">
 						
 						<p>User Name:</p>
-						<input name="username">
+						<input required name="username">
 						
-						<p>Password Word:</p>
-						<input name="password">
+						<p>Password:</p>
+						<input required type="password" name="password">
 						
 						<p>Phone Number:</p>
-						<input name="phone">
+						<input required type="number" name="phone">
 						
 						<p>Address:</p>
 						<input name="adress">

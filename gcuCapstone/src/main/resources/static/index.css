@@ -1,0 +1,10 @@
+@charset "ISO-8859-1";
+
+.message:empty {
+	display: none;
+}
+.message {
+	padding: 8px;
+	background-color: pink;
+	color: black;
+}

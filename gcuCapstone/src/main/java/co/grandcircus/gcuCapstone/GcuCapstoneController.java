@@ -2,17 +2,23 @@ package co.grandcircus.gcuCapstone;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.gcuCapstone.DAO.CourseDao;
 import co.grandcircus.gcuCapstone.DAO.EnrollmentsDao;
 import co.grandcircus.gcuCapstone.DAO.UserDao;
 import co.grandcircus.gcuCapstone.entities.Course;
+import co.grandcircus.gcuCapstone.entities.Enrollments;
 import co.grandcircus.gcuCapstone.entities.Student;
 import co.grandcircus.gcuCapstone.entities.User;
 
@@ -32,10 +38,30 @@ public class GcuCapstoneController {
 	}
 
 	@PostMapping("/")
-	public ModelAndView createStudent(Course course) {
-		courseDao.createCourse(course);
-
-		return new ModelAndView("redirect:/");
+	public ModelAndView createStudent(@RequestParam("username") String username,
+			@RequestParam("password") String password, RedirectAttributes redir, HttpSession session) {
+		Student student = new Student();
+		
+		try {
+			student = (Student) userDao.findByUserName(username);
+		}catch(NoResultException e) {
+			redir.addFlashAttribute("message", "Incorrect username or password");
+			return new ModelAndView("redirect:/");
+		}
+		
+		if (!student.getPassword().equals(password)) {
+			redir.addFlashAttribute("message", "Incorrect username or password");
+			return new ModelAndView("redirect:/");
+		}
+		
+		if (student.isAdmin()) {
+			session.setAttribute("student", student);
+			return new ModelAndView("courses");
+		}
+		
+		List<Enrollments> list = enrollmentsDao.findByStudent(student);
+		session.setAttribute("student", student);
+		return new ModelAndView("student-page", "list", list);
 	}
 
 	@RequestMapping("/courses")

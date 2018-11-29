@@ -24,6 +24,10 @@ public class UserDao {
 		return em.createQuery("FROM User WHERE dtype = :dtype", User.class).setParameter("dtype", "Student").getResultList();
 	}
 	
+	public User findByUserName(String username) {
+		return em.createQuery("FROM User WHERE username = :username", User.class).setParameter("username", username).getSingleResult();
+	}
+	
 	public void createStudent(Student student) {
 		em.persist(student);
 	}
