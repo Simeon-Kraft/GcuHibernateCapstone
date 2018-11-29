@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import co.grandcircus.gcuCapstone.DAO.CourseDao;
 import co.grandcircus.gcuCapstone.DAO.EnrollmentsDao;
 import co.grandcircus.gcuCapstone.DAO.UserDao;
+import co.grandcircus.gcuCapstone.entities.Admin;
 import co.grandcircus.gcuCapstone.entities.Course;
 import co.grandcircus.gcuCapstone.entities.Enrollments;
 import co.grandcircus.gcuCapstone.entities.Student;
@@ -40,7 +41,7 @@ public class GcuCapstoneController {
 	@PostMapping("/")
 	public ModelAndView createStudent(@RequestParam("username") String username,
 			@RequestParam("password") String password, RedirectAttributes redir, HttpSession session) {
-		Student student = new Student();
+		User student = new Admin();
 		
 		try {
 			student = (Student) userDao.findByUserName(username);
@@ -59,7 +60,10 @@ public class GcuCapstoneController {
 			return new ModelAndView("courses");
 		}
 		
-		List<Enrollments> list = enrollmentsDao.findByStudent(student);
+		Student s = new Student();
+		s = (Student) student;
+		
+		List<Enrollments> list = enrollmentsDao.findByStudent(s);
 		session.setAttribute("student", student);
 		return new ModelAndView("student-page", "list", list);
 	}
@@ -105,6 +109,20 @@ public class GcuCapstoneController {
 	public ModelAndView deleteStudent(@PathVariable("id") Long id) {
 		userDao.deleteStudent(id);
 		return new ModelAndView("redirect:/student-list");
+	}
+	
+	@RequestMapping("/create-admin")
+	public ModelAndView addAdmin() {
+		return new ModelAndView("create-admin");
+	}
+	
+	@PostMapping("/create-admin")
+	public ModelAndView createAdmin(@RequestParam("username") String username, @RequestParam("password") String password
+			, @RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName) {
+		User a = new Admin(username, password, firstName, lastName, true);
+		userDao.createAdmin((Admin) a);
+		
+		return new ModelAndView("redirect:/");
 	}
 
 }
